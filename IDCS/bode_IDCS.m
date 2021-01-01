@@ -6,7 +6,7 @@
     c2 = 7;
     k1 = 2200;
     k2 = 405;
-    Kp = 10;
+    Kp = 500;
     
 % sys1 : 2DOFモデル
     A=[ 0 0 1 0;
@@ -121,7 +121,7 @@
     
     figure(9)
     plot_bode(inv(tf(sys3)), [1 0 0]); hold on;
-    plot_bode(sys2(2), [0 1 0]); hold on;
+    plot_bode(sys2(2), [0 0 1]); hold on;
     legend('inverse transferfcn', 'IDCS', 'Location', 'SouthEast');
     
     function plot_bode(sys,color)
@@ -143,7 +143,7 @@
 %     set(gca, 'FontName','Arial');
     set(gca, 'FontSize',12);
     xlabel('Frequency [Hz]');
-    ylabel('Gain [-]');
+    ylabel('Gain [dB]');
     axis([10^(-1) 100 10^(-3) 100]);
     set(gca, 'XTick', [10^(-1) 10^0 10^1 10^2]);
     set(gca, 'YTick', [10^(-3) 10^(-2) 10^(-1) 10^0 10^1 10^2]);
