@@ -10,7 +10,7 @@ c1 = 7; % [N/m]
 c2 = 13; % [N/m]
 A = 0.003; % [mm]
 Hz = 2*pi; % [rad/s]
-Kp = 50; % 比例ゲイン
+Kp = 100; % 比例ゲイン
 
 
 % パラメータ(dampa) ------------------------------------------------------
@@ -51,9 +51,7 @@ Start_uTime = Start_Time;
 Finish_uTime = (End_Time-0.9)/Step_Time + 1;
 
 
-open_system('dampa_with_double.slx');
 out = sim('dampa_with_double.slx');
-close_system('dampa_with_double.slx');
 
 r = out.r;
 x = out.x;

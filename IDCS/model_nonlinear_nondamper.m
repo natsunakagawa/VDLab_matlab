@@ -6,13 +6,13 @@ m1 = 1.5;%[kg]
 m2 = 6.4;%[kg]
 k1 = 2200; % [N/m]
 k2 = 405; % [N/m]
-c1 = 5; % [N/m]
-c2 = 7; % [N/m]
+c1 = 50; % [N/m]
+c2 = 15; % [N/m]
 A = 0.003; % [m]
 Hz = 2*pi; % [rad/s]
-Kp = 60; % 比例ゲイン
-t_end = 100;
-Cutoff_diff = 100;
+Kp = 50; % 比例ゲイン
+t_end = 20;
+Cutoff_diff = 20;
 T_diff = 1/(2*pi*Cutoff_diff);
 
 % パラメータ(dampa) ------------------------------------------------------
@@ -49,8 +49,6 @@ End_Time = t_end;
 Step_Time = 0.002;
 Start_Time = First_Time/Step_Time + 1;
 Finish_Time = End_Time/Step_Time + 1;
-Start_uTime = Start_Time;
-Finish_uTime = (End_Time-0.9)/Step_Time + 1;
 
 out = sim('IDCS_nonlinear_nondamper.slx');
 
@@ -67,11 +65,11 @@ V = out.V;
 
 % --グラフ化--
 figure(1);
-% plot(r_IDCS.Time(Start_Time:Finish_Time), r_IDCS.Data(Start_Time:Finish_Time), 'color', red, 'LineWidth', 2.0); hold on;
-% plot(x_IDCS.Time(Start_Time:Finish_Time), x_IDCS.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 2.0); hold on;
+plot(x_IDCS.Time(Start_Time:Finish_Time), x_IDCS.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 3.0); hold on;
+plot(r_IDCS.Time(Start_Time:Finish_Time), r_IDCS.Data(Start_Time:Finish_Time), 'color', red, 'LineWidth', 2.0); hold on;
 % plot(r_rela.Time(Start_Time:Finish_Time), r_rela.Data(Start_Time:Finish_Time), 'color', green, 'LineWidth', 2.0); hold on;
-plot(x_rela.Time(Start_Time:Finish_Time), x_rela.Data(Start_Time:Finish_Time), 'color', lightblue, 'LineWidth', 2.0); hold on;
-axis([6,8,-1,1]); grid on;
+% plot(x_rela.Time(Start_Time:Finish_Time), x_rela.Data(Start_Time:Finish_Time), 'color', lightblue, 'LineWidth', 2.0); hold on;
+axis([6,8,-6,6]); grid on;
 set(gca, 'FontName', 'Arial');
 set(gca, 'FontSize', 14);
 xlabel('T [s]');
@@ -80,11 +78,24 @@ ylabel('A [mm]');
 hold off;
 
 figure(2);
-plot(u.Time(Start_Time:Finish_Time), u.Data(Start_Time:Finish_Time), 'color', red, 'LineWidth', 2.0); hold on;
-plot(u_rela.Time(Start_Time:Finish_Time), u_rela.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 2.0); hold on;
+plot(x_IDCS.Time(Start_Time:Finish_Time), x_IDCS.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 3.0); hold on;
+plot(r_IDCS.Time(Start_Time:Finish_Time), r_IDCS.Data(Start_Time:Finish_Time), 'color', red, 'LineWidth', 2.0); hold on;
 % plot(r_rela.Time(Start_Time:Finish_Time), r_rela.Data(Start_Time:Finish_Time), 'color', green, 'LineWidth', 2.0); hold on;
 % plot(x_rela.Time(Start_Time:Finish_Time), x_rela.Data(Start_Time:Finish_Time), 'color', lightblue, 'LineWidth', 2.0); hold on;
-axis([0,4,-10,10]); grid on;
+axis([First_Time,End_Time,-6,6]); grid on;
+set(gca, 'FontName', 'Arial');
+set(gca, 'FontSize', 14);
+xlabel('T [s]');
+% xticklabels({'0', '0.5', '1', '1.5', '2'});
+ylabel('A [mm]');
+hold off;
+
+figure(3);
+plot(u.Time(Start_Time:Finish_Time), u.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 3.0); hold on;
+plot(u_rela.Time(Start_Time:Finish_Time), u_rela.Data(Start_Time:Finish_Time), 'color', red, 'LineWidth', 2.0); hold on;
+% plot(r_rela.Time(Start_Time:Finish_Time), r_rela.Data(Start_Time:Finish_Time), 'color', green, 'LineWidth', 2.0); hold on;
+% plot(x_rela.Time(Start_Time:Finish_Time), x_rela.Data(Start_Time:Finish_Time), 'color', lightblue, 'LineWidth', 2.0); hold on;
+axis([6,8,-10,10]); grid on;
 set(gca, 'FontName', 'Arial');
 set(gca, 'FontSize', 14);
 xlabel('T [s]');

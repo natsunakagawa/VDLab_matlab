@@ -141,7 +141,7 @@
     set(gcf, 'Color', [0.9 0.9 0.9]);
     set(gca, 'FontName','Times New Roman');
 %     set(gca, 'FontName','Arial');
-    set(gca, 'FontSize',12);
+    set(gca, 'FontSize',18);
     xlabel('Frequency [Hz]');
     ylabel('Gain [dB]');
     axis([10^(-1) 100 10^(-3) 100]);
@@ -161,7 +161,7 @@
     set(gcf, 'Color', [0.9 0.9 0.9]);
     set(gca, 'FontName','Times New Roman');
 %     set(gca, 'FontName','Arial');
-    set(gca, 'FontSize',12);
+    set(gca, 'FontSize',18);
     xlabel('Frequency [Hz]');
     ylabel('Phase [deg]');
     axis([10^(-1) 10^2 -720 0]);
