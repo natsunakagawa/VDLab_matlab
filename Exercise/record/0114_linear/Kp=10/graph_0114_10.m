@@ -1,7 +1,7 @@
 clear; 
 close all;
 
-load('0114_5_1.mat');
+load('0114_3_1.mat');
 
 % 3_3 t:14~16
 % 5_2 t:14~16
@@ -80,5 +80,5 @@ axis([8,10, -12,12]); grid on;
 xlabel('T [s]');
 % xticklabels({'0', '0.5', '1', '1.5', '2'});
 ylabel('x [mm]');
-legend('-x''_1(hardware)', '-x''1(idcs)', 'FontName', 'Cambria Math');
+legend('-x''_1(Hardware)', '-x''1(IDCS)', 'FontName', 'Cambria Math');
 hold off;
