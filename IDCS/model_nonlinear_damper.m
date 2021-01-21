@@ -4,15 +4,15 @@ close all;
 % パラメータ(IDCS)
 m1 = 1.5;
 m2 = 6.4;
-c1 = 140;
+c1 = 50;
 c2 = 37;
 k1 = 2200;
-k2 = 405;
-A = 0.003; % [mm]
-Hz =2*pi; % [rad/s]
-Kp = 7; % 比例ゲイン
+k2 = 439;
+A = 0.002; % [mm]
+Hz =2*5*pi; % [rad/s]
+Kp = 90; % 比例ゲイン
 t_end = 100;
-diff_cutoff = 80;
+diff_cutoff = 20;
 T_diff = 1/(2*pi*diff_cutoff);
 
 % パラメータ(dampa) ------------------------------------------------------
@@ -60,18 +60,23 @@ u = out.u;
 F_hard = out.F_hard;
 F_analysis = out.F_analysis;
 
+Kp = 15;
+out = sim('IDCS_nonlinear_damper.slx');
+xa = out.x;
+
+
 % --グラフ化--
 figure(1);
 plot(x.Time(:), x.Data(:), 'color', blue, 'LineWidth', 3.0); hold on;
+plot(xa.Time(:), xa.Data(:), 'color', green, 'LineWidth', 2.0); hold on;
 plot(r.Time(:), r.Data(:), 'color', red, 'LineWidth', 2.0); hold on;
 axis([6,8,-10,10]); grid on;
 set(gca, 'FontName', 'Times New Roman');
-set(gca, 'FontSize', 12);
-set(gcf, 'Position', [100, 350, 350, 280]);
+set(gca, 'FontSize', 22);
 xlabel('T [s]');
 ylabel('x_2 - x_1 [mm]');
 xticklabels({'0', '0.5', '1', '1.5', '2'});
-legend('Hardware(Kp=100)', 'Hardware(Kp=15)', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.6 0.8 0.3 0.1]);
+legend('Hardware(Kp=100)', 'Hardware(Kp=15)', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.6 0.83 0.3 0.1]);
 hold off;
 
 % figure(1);

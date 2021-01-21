@@ -5,12 +5,12 @@ close all;
 m1 = 1.5;%[kg]
 m2 = 6.4;%[kg]
 k1 = 2200; % [N/m]
-k2 = 405; % [N/m]
-c1 = 140; % [N/m]  下げれば値近づく
+k2 = 439; % [N/m]
+c1 = 50; % [N/m]  下げれば値近づく
 c2 = 37; % [N/m]
-A = 0.003;
-Hz = 2*2*pi;
-diff_cutoff = 80;
+A = 0.002;
+Hz = 2*5*pi;
+diff_cutoff = 20;
 T_diff = 1/(2*pi*diff_cutoff);
 t_end = 30;
 
@@ -27,7 +27,7 @@ lightblue = [0/255 200/255 255/255];
 %　シミュレーション
 First_Time = 6;
 End_Time = 8;
-Step_Time = 0.002;
+Step_Time = 0.003;
 Start_Time = First_Time/Step_Time + 1;
 Finish_Time = End_Time/Step_Time + 1;
 
@@ -49,7 +49,7 @@ set(gca, 'FontSize', 22);
 xlabel('T [s]');
 ylabel('x_2 - x_1 [mm]');
 xticklabels({'0', '0.5', '1', '1.5', '2'});
-legend('Hardware', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.7 0.85 0.3 0.1]);
+legend('Hardware', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.65 0.85 0.3 0.1]);
 
 figure(2);
 plot(u.Time(:), u.Data(:), 'color', red, 'LineWidth', 2.0); hold on;

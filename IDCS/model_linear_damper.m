@@ -4,15 +4,15 @@ close all;
 % パラメータ(IDCS)
 m1 = 1.5;
 m2 = 6.4;
-c1 = 140; % 140
+c1 = 50; % 140
 c2 = 37;
 k1 = 2200;
 k2 = 439;
-A = 0.003; % [mm]
-Hz =2*pi; % [rad/s]
-Kp = 10; % 比例ゲイン
-t_end = 20;
-diff_cutoff = 80; % 80
+A = 0.002; % [mm]
+Hz =2*5*pi; % [rad/s]
+Kp = 100; % 比例ゲイン
+t_end = 30;
+diff_cutoff = 20; % 80
 T_diff = 1/(2*pi*diff_cutoff);
 
 % Color -------------------------------------------------------------------
@@ -73,20 +73,20 @@ set(gca, 'FontSize', 22);
 xlabel('T [s]');
 ylabel('x_2 - x_1 [mm]');
 xticklabels({'0', '0.5', '1', '1.5', '2'});
-legend('Hardware(Kp=100)', 'Hardware(Kp=15)', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.6 0.8 0.3 0.1]);
+legend('Hardware(Kp=100)', 'Hardware(Kp=15)', 'Analysis', 'FontName', 'Times New Roman', 'Position',[0.6 0.83 0.3 0.1]);
 hold off;
 
-figure(3);
-plot(u.Time(:), u.Data(:), 'color', blue, 'LineWidth', 3.0); hold on;
-plot(in_rela.Time(:), in_rela.Data(:), 'color', red, 'LineWidth', 2.0); hold on;
-axis([6,8,-10,10]); grid on;
-set(gca, 'FontName', 'Arial');
-set(gca, 'FontSize', 18);
-xlabel('T [s]');
-% xticklabels({'0.22', '0.23', '0.24', '0.25', '0.26'});
-ylabel('A [mm]');
-legend('u', 'x_0-x_2', 'FontName', 'Cambria Math');
-hold off;
+% figure(3);
+% plot(V.Time(:), V.Data(:), 'color', blue, 'LineWidth', 3.0); hold on;
+% plot(Va.Time(:), Va.Data(:), 'color', red, 'LineWidth', 2.0); hold on;
+% axis([6,8,-10,10]); grid on;
+% set(gca, 'FontName', 'Arial');
+% set(gca, 'FontSize', 18);
+% xlabel('T [s]');
+% % xticklabels({'0.22', '0.23', '0.24', '0.25', '0.26'});
+% ylabel('A [mm]');
+% legend('u', 'x_0-x_2', 'FontName', 'Cambria Math');
+% hold off;
 % 
 figure(4);
 plot(F_hard.Time(Start_Time:Finish_Time), F_hard.Data(Start_Time:Finish_Time), 'color', blue, 'LineWidth', 3.0); hold on;
